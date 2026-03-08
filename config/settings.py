@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'redis',
 
     # user apps
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -135,7 +136,7 @@ STATICFILES_DIRS = (
     BASE_DIR / 'static',
 )
 
-# AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = 'users.User'
 
 cache_status = os.getenv('CACHE_STATUS')
 CACHE_ENABLED = True if cache_status == 'True' else False
