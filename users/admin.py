@@ -5,4 +5,4 @@ from users.models import User
 class UserAdmin(admin.ModelAdmin):
     list_display = ('id', 'email', 'first_name', 'last_name',)
     list_filter = ('id', 'first_name', 'last_name',)
-    ordering ('id',)
+    ordering = ('id',)

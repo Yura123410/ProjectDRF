@@ -1,5 +1,5 @@
 from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView
-from rest_framework_simlejwt.views import TokenObtainPairView
+from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
 from users.models import User
@@ -8,25 +8,25 @@ from users.user_serializers import UserSerializer, UserCreateSerializer, UserUpd
 
 
 class UserListAPIView(ListAPIView):
-    queryset = User.object.all()
-    serializer_class - UserSerializer
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 
 class UserCreateAPIView(CreateAPIView):
-    queryset = User.object.all()
-    serializer_class - UserCreateSerializer
+    queryset = User.objects.all()
+    serializer_class = UserCreateSerializer
     permission_classes = (AllowAny,)
 
 
 class UserRetrieveAPIView(RetrieveAPIView):
-    queryset = User.object.all()
-    serializer_class - UserSerializer
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
     permission_classes = (AllowAny,)
 
 
 class UserUpdateAPIView(UpdateAPIView):
-    queryset = User.object.all()
-    serializer_class - UserUpdateSerializer
+    queryset = User.objects.all()
+    serializer_class = UserUpdateSerializer
     permission_classes = (AllowAny,)
 
     # def get_object(self):
@@ -35,8 +35,8 @@ class UserUpdateAPIView(UpdateAPIView):
 
 
 class UserDestroyAPIView(DestroyAPIView):
-    queryset = User.object.all()
+    queryset = User.objects.all()
     permission_classes = (AllowAny,)
 
 class UserTokenObtainPairView(TokenObtainPairView):
-    serializer_class - UserTokenObtainPairSerializer
+    serializer_class = UserTokenObtainPairSerializer

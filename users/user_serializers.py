@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer, AuthUser
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer, TokenObtainSerializer, AuthUser
 from rest_framework_simplejwt.serializers import Token
 
 from users.models import User
