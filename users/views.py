@@ -29,9 +29,9 @@ class UserUpdateAPIView(UpdateAPIView):
     serializer_class - UserUpdateSerializer
     permission_classes = (AllowAny,)
 
-    def get_object(self):
-        user = self.request.user
-        return User.object.filter(id=user.id)
+    # def get_object(self):
+    #     user = self.request.user
+    #     return User.object.filter(id=user.id)
 
 
 class UserDestroyAPIView(DestroyAPIView):
