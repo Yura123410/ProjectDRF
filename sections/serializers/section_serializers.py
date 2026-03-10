@@ -8,7 +8,7 @@ from sections.serializers.content_serializers import ContentSectionSerializer
 class SectionSerializer(ModelSerializer):
     class Meta:
         model = Content
-        field = '__all__'
+        fields = '__all__'
 
 
 class SectionListSerializer(ModelSerializer):
@@ -17,6 +17,6 @@ class SectionListSerializer(ModelSerializer):
     def get_section_content_title(self, section):
         return ContentSectionSerializer(Content.objects.filter(section=section), many=True).data
 
-    class Mete:
+    class Meta:
         model = Section
-        field = ('id', 'title', 'section_content_title')
+        fields = ('id', 'title', 'section_content_title')
