@@ -7,7 +7,7 @@ from sections.serializers.content_serializers import ContentSectionSerializer
 
 class SectionSerializer(ModelSerializer):
     class Meta:
-        model = Content
+        model = Section
         fields = '__all__'
 
 
