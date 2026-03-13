@@ -7,7 +7,7 @@ from sections.apps import SectionsConfig
 
 from sections.views import SectionListAPIView, SectionCreateAPIView, SectionRetriveAPIView, SectionUpdateAPIView, \
     SectionDestroyAPIView, ContentListAPIView, ContentCreateAPIView, ContentRetriveAPIView, ContentDestroyAPIView, \
-    ContentUpdateAPIView
+    ContentUpdateAPIView, QuestionListAPIView, QuestionRetriveAPIView
 
 app_name = SectionsConfig.name
 
@@ -34,6 +34,10 @@ urlpatterns = [
                   path(p.join(content, create), ContentCreateAPIView.as_view(), name='content_create'),
                   path(p.join(content, int_pk), ContentRetriveAPIView.as_view(), name='content_detail'),
                   path(p.join(content, int_pk, update), ContentUpdateAPIView.as_view(), name='content_update'),
-                  path(p.join(content, int_pk, delete), ContentDestroyAPIView.as_view(), name='content_delete')
+                  path(p.join(content, int_pk, delete), ContentDestroyAPIView.as_view(), name='content_delete'),
+
+                  # content urlpatterns
+                  path(p.join(question), QuestionListAPIView.as_view(), name='question_list'),
+                  path(p.join(question, int_pk), QuestionRetriveAPIView.as_view(), name='question'),
 
               ] + router.urls
