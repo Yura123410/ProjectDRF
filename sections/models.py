@@ -30,6 +30,7 @@ class Content(models.Model):
         verbose_name_plural = _('Content')
         ordering = ['id']
 
+
 class Question(models.Model):
     section = models.ForeignKey(Section, on_delete=models.CASCADE, verbose_name=_('Section'))
     description = models.TextField(verbose_name=_('Description'), **NULLABLE)

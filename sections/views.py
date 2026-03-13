@@ -1,12 +1,12 @@
 from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated, IsAdminUser
+# from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 from sections.models import Section, Content, Question
-from sections.permissions import IsModerator, IsSuperuser
+# from sections.permissions import IsModerator, IsSuperuser
 from sections.serializers.section_serializers import SectionSerializer, SectionListSerializer
 from sections.serializers.content_serializers import ContentSerializer, ContentListSerializer
-from sections.serializers.question_serializer import QuestionSerilizer, QuestionSectionSerilizer
+from sections.serializers.question_serializer import QuestionSerializer, QuestionSectionSerializer
 
 from sections.paginators import SectionPaginator, ContentPaginator, QuestionPaginator
 
@@ -23,7 +23,7 @@ class SectionCreateAPIView(CreateAPIView):
     # permission_classes = (IsAuthenticated, IsModerator | IsSuperuser)
 
 
-class SectionRetriveAPIView(RetrieveAPIView):
+class SectionRetrieveAPIView(RetrieveAPIView):
     serializer_class = SectionSerializer
     queryset = Section.objects.all()
     # permission_classes = (IsAuthenticated,)
@@ -54,7 +54,7 @@ class ContentCreateAPIView(CreateAPIView):
     # permission_classes = (IsAuthenticated, IsModerator | IsSuperuser)
 
 
-class ContentRetriveAPIView(RetrieveAPIView):
+class ContentRetrieveAPIView(RetrieveAPIView):
     serializer_class = ContentSerializer
     queryset = Content.objects.all()
     # permission_classes = (IsAuthenticated, )
@@ -73,21 +73,22 @@ class ContentDestroyAPIView(DestroyAPIView):
 
 
 class QuestionListAPIView(ListAPIView):
-    serializer_class = QuestionSerilizer
+    serializer_class = QuestionSerializer
     queryset = Question.objects.all()
     # permission_classes = (IsAuthenticated,)
     pagination_class = QuestionPaginator
 
 
-class QuestionRetriveAPIView(RetrieveAPIView):
-    serializer_class = QuestionSectionSerilizer
+class QuestionRetrieveAPIView(RetrieveAPIView):
+    serializer_class = QuestionSectionSerializer
     queryset = Question.objects.all()
+
     # permission_classes = (IsAuthenticated,)
 
     def post(self, request, *args, **kwargs):
         answers = [question.answer for question in Question.objects.all()]
         answer = answers[self.kwargs.get('pk') - 1]
         answer = answer.title.strip().lower()
-        member_aswer = request.data.get('member_answer').strip().lower()
-        is_correct = member_aswer == answer
+        member_answer = request.data.get('member_answer').strip().lower()
+        is_correct = member_answer == answer
         return Response({'is_correct': is_correct})
