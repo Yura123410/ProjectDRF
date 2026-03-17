@@ -35,7 +35,7 @@ urlpatterns = [  # section urlpatterns
                   path(p.join(content, int_pk, update), ContentUpdateAPIView.as_view(), name='content_update'),
                   path(p.join(content, int_pk, delete), ContentDestroyAPIView.as_view(), name='content_delete'),
 
-                  # content urlpatterns
+                  # question urlpatterns
                   path(p.join(question), QuestionListAPIView.as_view(), name='question_list'),
                   path(p.join(question, int_pk), QuestionRetrieveAPIView.as_view(), name='question'),
 

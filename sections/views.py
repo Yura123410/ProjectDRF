@@ -86,9 +86,9 @@ class QuestionRetrieveAPIView(RetrieveAPIView):
     # permission_classes = (IsAuthenticated,)
 
     def post(self, request, *args, **kwargs):
-        answers = [question.answer for question in Question.objects.all()]
-        answer = answers[self.kwargs.get('pk') - 1]
-        answer = answer.title.strip().lower()
-        member_answer = request.data.get('member_answer').strip().lower()
-        is_correct = member_answer == answer
+        question = self.get_object()
+        correct_answer = question.answer.title.strip().lower()
+        member_answer = request.data.get('member_answer', '').strip().lower()
+        is_correct = member_answer == correct_answer
+
         return Response({'is_correct': is_correct})
