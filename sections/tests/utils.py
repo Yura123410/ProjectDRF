@@ -1,5 +1,5 @@
 from users.models import User, UserRoles
-from sections.models import Section
+from sections.models import Section, Content
 
 def get_admin_user():
     user = User.objects.create(
@@ -32,3 +32,12 @@ def get_test_section():
         description='Test Description'
     )
     return section
+
+def get_test_content():
+    section = get_test_section()
+    content = Content.objects.create(
+        section=section,
+        title='Test Title Content',
+        content='Test Content',
+    )
+    return content

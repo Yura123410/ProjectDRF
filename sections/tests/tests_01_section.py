@@ -1,7 +1,6 @@
 from rest_framework.test import APITestCase
 from rest_framework import status
 
-from sections.models import Section
 from sections.tests.utils import get_admin_user, get_member_user, get_test_section
 
 
@@ -66,7 +65,7 @@ class SectionTestsMember(APITestCase):
         }
         response = self.client.post(f'/section/create/', data=data)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-        print(response.json())
+        # print(response.json())
         self.assertEqual(response.json().get('detail'), 'У вас недостаточно прав для выполнения данного действия.')
 
     def test_07_section_delete_forbidden(self):
