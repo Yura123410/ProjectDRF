@@ -44,9 +44,8 @@ class SectionTestsAdmin(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_05_section_list(self):
-        response = self.client.get(f'/section/')
+        response = self.client.get('/section/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        # print(response.json())
         self.assertEqual(response.json()['results'][0]['title'], 'Test Section')
 
 
@@ -63,13 +62,11 @@ class SectionTestsMember(APITestCase):
             'title': 'Test Section Create Forbidden',
             'description': 'Test Description Create Forbidden',
         }
-        response = self.client.post(f'/section/create/', data=data)
+        response = self.client.post('/section/create/', data=data)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-        # print(response.json())
         self.assertEqual(response.json().get('detail'), 'У вас недостаточно прав для выполнения данного действия.')
 
     def test_07_section_delete_forbidden(self):
         response = self.client.delete(f'/section/{self.test_section.id}/delete/')
-        # print(response.json())
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
         self.assertEqual(response.json().get('detail'), 'You are not a moderator.')

@@ -7,6 +7,7 @@ from users.user_serializers import UserSerializer, UserCreateSerializer, UserUpd
     UserTokenObtainPairSerializer
 from sections.permissions import IsModerator, IsSuperuser
 
+
 class UserListAPIView(ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
@@ -38,6 +39,7 @@ class UserUpdateAPIView(UpdateAPIView):
 class UserDestroyAPIView(DestroyAPIView):
     queryset = User.objects.all()
     permission_classes = (IsSuperuser,)
+
 
 class UserTokenObtainPairView(TokenObtainPairView):
     serializer_class = UserTokenObtainPairSerializer

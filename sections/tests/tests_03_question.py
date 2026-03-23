@@ -1,7 +1,6 @@
 from rest_framework.test import APITestCase
 from rest_framework import status
 
-from sections.models import Content
 from sections.tests.utils import get_test_question, get_member_user
 
 
@@ -25,7 +24,7 @@ class QuestionTests(APITestCase):
 
     def test_17_question_is_correct(self):
         answer = {
-            'member_answer':'Test Title Content',
+            'member_answer': 'Test Title Content',
         }
         answer_wrong = {
             'member_answer': 'Wrong Title Content',
@@ -35,7 +34,4 @@ class QuestionTests(APITestCase):
         self.assertEqual(response.json().get('is_correct'), True)
         response = self.client.post(f'/question/{self.question.id}/', answer_wrong)
         self.assertEqual(response.json().get('is_correct'), False)
-
-
-
 

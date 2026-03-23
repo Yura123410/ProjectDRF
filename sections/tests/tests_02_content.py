@@ -44,9 +44,10 @@ class ContentTestsAdmin(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_12_content_list(self):
-        response = self.client.get(f'/content/')
+        response = self.client.get('/content/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.json()['results'][0]['title'], 'Test Title Content')
+
 
 class ContentTestMember(APITestCase):
     def setUp(self):
